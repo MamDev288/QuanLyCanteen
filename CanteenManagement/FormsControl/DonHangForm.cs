@@ -20,11 +20,11 @@ namespace CanteenManagement.FormsControl
             InitializeComponent();
         }
         CanteenManagementEntities db = new CanteenManagementEntities();
-        loaisanpham tk;
+        donhang tk;
         int RowIndex = -1;
         private List<Object> renderGrid()
         {
-            List<donhang> render = db.donhangs.Include(u => u.chitietdonhangs).ToList();
+            List<donhang> render = db.donhangs.ToList();
             if (txtFilter.Text != "")
             {
                 string key = txtFilter.Text;
@@ -33,10 +33,9 @@ namespace CanteenManagement.FormsControl
             List<Object> list = render.Select(u => new {
                 id = u.id,
                 TenKhacHang = u.tenkhachhang,
-                SoLuongSanPham = u.chitietdonhangs.Count(),
-                ThanhTien = u.thanhtoan,
-                GiamGia = u.giamgia,
                 TongThanhToan = u.tongtien,
+                GiamGia = u.giamgia,
+                ThanhTien = u.thanhtoan,
 
             }).ToList<Object>();
             return list;
@@ -50,6 +49,42 @@ namespace CanteenManagement.FormsControl
         {
             DonHangDetailForm f = new DonHangDetailForm();
             f.ShowDialog();
+            db = new CanteenManagementEntities();
+            DataShowServices.initDataGridView(dgvData, renderGrid());
+
+        }
+
+        private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            RowIndex = e.RowIndex;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (RowIndex < 0)
+                return;
+            int Id = int.Parse(dgvData.Rows[RowIndex].Cells[0].Value.ToString());
+            tk = db.donhangs.Include(u => u.chitietdonhangs).FirstOrDefault(u => u.id == Id);
+            if(tk != null)
+            {
+                DonHangDetailForm f = new DonHangDetailForm(tk);
+                f.ShowDialog();
+                db = new CanteenManagementEntities();
+                DataShowServices.initDataGridView(dgvData, renderGrid());
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy đơn hàng", "Thông báo");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (RowIndex < 0)
+                return;
+            int Id = int.Parse(dgvData.Rows[RowIndex].Cells[0].Value.ToString());
+            if (MessageBox.Show("Bạn có chắc chắn muốn xoá đơn hàng này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Error) == DialogResult.Yes)
+                db.sp_deteledonhang(Id);
             DataShowServices.initDataGridView(dgvData, renderGrid());
 
         }

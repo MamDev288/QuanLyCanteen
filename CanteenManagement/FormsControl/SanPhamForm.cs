@@ -108,5 +108,10 @@ namespace CanteenManagement.FormsControl
         {
             RowIndex = e.RowIndex;
         }
+
+        private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
     }
 }
