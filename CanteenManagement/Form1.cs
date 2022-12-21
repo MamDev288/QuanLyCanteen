@@ -22,7 +22,7 @@ namespace CanteenManagement
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Program.tk = db.taikhoans.FirstOrDefault(u=> u.taikhoan1 == textBox1.Text && u.matkhau == textBox2.Text);
+            Program.tk = db.taikhoandns.FirstOrDefault(u=> u.taikhoan == textBox1.Text && u.matkhau == textBox2.Text);
             if (Program.tk != null)
             {
                 MessageBox.Show("Đăng nhập thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

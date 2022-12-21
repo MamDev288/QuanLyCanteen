@@ -12,22 +12,19 @@ namespace CanteenManagement.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class taikhoan
+    public partial class taikhoandn
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public taikhoan()
+        public taikhoandn()
         {
-            this.chitietdonhangs = new HashSet<chitietdonhang>();
             this.donhangs = new HashSet<donhang>();
         }
     
         public int id { get; set; }
-        public string taikhoan1 { get; set; }
+        public string taikhoan { get; set; }
         public string matkhau { get; set; }
         public string hoten { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<chitietdonhang> chitietdonhangs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<donhang> donhangs { get; set; }
     }

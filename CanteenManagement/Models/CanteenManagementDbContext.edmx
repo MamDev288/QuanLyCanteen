@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CanteenManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CanteenManagementDbContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="chitietdonhang">
           <Key>
             <PropertyRef Name="id" />
@@ -42,7 +42,7 @@
           <Property Name="giatien" Type="real" Nullable="false" />
           <Property Name="loaisanphamid" Type="int" />
         </EntityType>
-        <EntityType Name="taikhoan">
+        <EntityType Name="taikhoandn">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -51,11 +51,11 @@
           <Property Name="matkhau" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="hoten" Type="nvarchar" MaxLength="255" Nullable="false" />
         </EntityType>
-        <Association Name="FK__chitietdo__donha__1BFD2C07">
-          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+        <Association Name="FK__chitietdo__donha__300424B4">
+          <End Role="donhang" Type="Self.donhang" Multiplicity="0..1" />
           <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="taikhoan">
+            <Principal Role="donhang">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="chitietdonhang">
@@ -63,7 +63,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietdo__sanph__1B0907CE">
+        <Association Name="FK__chitietdo__sanph__2F10007B">
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
           <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
           <ReferentialConstraint>
@@ -75,11 +75,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__donhang__taikhoa__182C9B23">
-          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+        <Association Name="FK__donhang__taikhoa__2C3393D0">
+          <End Role="taikhoandn" Type="Self.taikhoandn" Multiplicity="0..1" />
           <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="taikhoan">
+            <Principal Role="taikhoandn">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donhang">
@@ -87,7 +87,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__sanpham__loaisan__145C0A3F">
+        <Association Name="FK__sanpham__loaisan__286302EC">
           <End Role="loaisanpham" Type="Self.loaisanpham" Multiplicity="0..1" />
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,6 +115,7 @@
         <Function Name="sp_addsanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tensanpham" Type="nvarchar" Mode="In" />
           <Parameter Name="loaiSP" Type="int" Mode="In" />
+          <Parameter Name="giatien" Type="real" Mode="In" />
         </Function>
         <Function Name="sp_addtaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="taikhoan" Type="varchar" Mode="In" />
@@ -154,6 +155,7 @@
         <Function Name="sp_editsanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tensanpham" Type="nvarchar" Mode="In" />
           <Parameter Name="loaiSP" Type="int" Mode="In" />
+          <Parameter Name="giatien" Type="real" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_edittaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -161,25 +163,25 @@
           <Parameter Name="hoTen" Type="nvarchar" Mode="In" />
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
-        <EntityContainer Name="CanteenManagementModelStoreContainer">
+        <EntityContainer Name="CanteenManagementDbContextStoreContainer">
           <EntitySet Name="chitietdonhang" EntityType="Self.chitietdonhang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="donhang" EntityType="Self.donhang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="loaisanpham" EntityType="Self.loaisanpham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__chitietdo__donha__1BFD2C07" Association="Self.FK__chitietdo__donha__1BFD2C07">
-            <End Role="taikhoan" EntitySet="taikhoan" />
+          <EntitySet Name="taikhoandn" EntityType="Self.taikhoandn" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chitietdo__donha__300424B4" Association="Self.FK__chitietdo__donha__300424B4">
+            <End Role="donhang" EntitySet="donhang" />
             <End Role="chitietdonhang" EntitySet="chitietdonhang" />
           </AssociationSet>
-          <AssociationSet Name="FK__chitietdo__sanph__1B0907CE" Association="Self.FK__chitietdo__sanph__1B0907CE">
+          <AssociationSet Name="FK__chitietdo__sanph__2F10007B" Association="Self.FK__chitietdo__sanph__2F10007B">
             <End Role="sanpham" EntitySet="sanpham" />
             <End Role="chitietdonhang" EntitySet="chitietdonhang" />
           </AssociationSet>
-          <AssociationSet Name="FK__donhang__taikhoa__182C9B23" Association="Self.FK__donhang__taikhoa__182C9B23">
-            <End Role="taikhoan" EntitySet="taikhoan" />
+          <AssociationSet Name="FK__donhang__taikhoa__2C3393D0" Association="Self.FK__donhang__taikhoa__2C3393D0">
+            <End Role="taikhoandn" EntitySet="taikhoandn" />
             <End Role="donhang" EntitySet="donhang" />
           </AssociationSet>
-          <AssociationSet Name="FK__sanpham__loaisan__145C0A3F" Association="Self.FK__sanpham__loaisan__145C0A3F">
+          <AssociationSet Name="FK__sanpham__loaisan__286302EC" Association="Self.FK__sanpham__loaisan__286302EC">
             <End Role="loaisanpham" EntitySet="loaisanpham" />
             <End Role="sanpham" EntitySet="sanpham" />
           </AssociationSet>
@@ -188,7 +190,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="CanteenManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="CanteenManagementDbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="chitietdonhang">
           <Key>
             <PropertyRef Name="id" />
@@ -198,8 +200,8 @@
           <Property Name="soluong" Type="Single" Nullable="false" />
           <Property Name="thanhtien" Type="Single" Nullable="false" />
           <Property Name="donhangid" Type="Int32" />
-          <NavigationProperty Name="taikhoan" Relationship="Self.FK__chitietdo__donha__1BFD2C07" FromRole="chitietdonhang" ToRole="taikhoan" />
-          <NavigationProperty Name="sanpham" Relationship="Self.FK__chitietdo__sanph__1B0907CE" FromRole="chitietdonhang" ToRole="sanpham" />
+          <NavigationProperty Name="donhang" Relationship="Self.FK__chitietdo__donha__300424B4" FromRole="chitietdonhang" ToRole="donhang" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK__chitietdo__sanph__2F10007B" FromRole="chitietdonhang" ToRole="sanpham" />
         </EntityType>
         <EntityType Name="donhang">
           <Key>
@@ -211,7 +213,8 @@
           <Property Name="giamgia" Type="Single" />
           <Property Name="thanhtoan" Type="Single" />
           <Property Name="taikhoanid" Type="Int32" />
-          <NavigationProperty Name="taikhoan" Relationship="Self.FK__donhang__taikhoa__182C9B23" FromRole="donhang" ToRole="taikhoan" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__donha__300424B4" FromRole="donhang" ToRole="chitietdonhang" />
+          <NavigationProperty Name="taikhoandn" Relationship="Self.FK__donhang__taikhoa__2C3393D0" FromRole="donhang" ToRole="taikhoandn" />
         </EntityType>
         <EntityType Name="loaisanpham">
           <Key>
@@ -219,7 +222,7 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="tenloaisanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__loaisan__145C0A3F" FromRole="loaisanpham" ToRole="sanpham" />
+          <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__loaisan__286302EC" FromRole="loaisanpham" ToRole="sanpham" />
         </EntityType>
         <EntityType Name="sanpham">
           <Key>
@@ -229,25 +232,24 @@
           <Property Name="tensanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="giatien" Type="Single" Nullable="false" />
           <Property Name="loaisanphamid" Type="Int32" />
-          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__sanph__1B0907CE" FromRole="sanpham" ToRole="chitietdonhang" />
-          <NavigationProperty Name="loaisanpham" Relationship="Self.FK__sanpham__loaisan__145C0A3F" FromRole="sanpham" ToRole="loaisanpham" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__sanph__2F10007B" FromRole="sanpham" ToRole="chitietdonhang" />
+          <NavigationProperty Name="loaisanpham" Relationship="Self.FK__sanpham__loaisan__286302EC" FromRole="sanpham" ToRole="loaisanpham" />
         </EntityType>
-        <EntityType Name="taikhoan">
+        <EntityType Name="taikhoandn">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="taikhoan1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="taikhoan" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="matkhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="hoten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__donha__1BFD2C07" FromRole="taikhoan" ToRole="chitietdonhang" />
-          <NavigationProperty Name="donhangs" Relationship="Self.FK__donhang__taikhoa__182C9B23" FromRole="taikhoan" ToRole="donhang" />
+          <NavigationProperty Name="donhangs" Relationship="Self.FK__donhang__taikhoa__2C3393D0" FromRole="taikhoandn" ToRole="donhang" />
         </EntityType>
-        <Association Name="FK__chitietdo__donha__1BFD2C07">
-          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+        <Association Name="FK__chitietdo__donha__300424B4">
+          <End Role="donhang" Type="Self.donhang" Multiplicity="0..1" />
           <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="taikhoan">
+            <Principal Role="donhang">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="chitietdonhang">
@@ -255,7 +257,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__chitietdo__sanph__1B0907CE">
+        <Association Name="FK__chitietdo__sanph__2F10007B">
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
           <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,11 +269,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__donhang__taikhoa__182C9B23">
-          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+        <Association Name="FK__donhang__taikhoa__2C3393D0">
+          <End Role="taikhoandn" Type="Self.taikhoandn" Multiplicity="0..1" />
           <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="taikhoan">
+            <Principal Role="taikhoandn">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="donhang">
@@ -279,7 +281,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__sanpham__loaisan__145C0A3F">
+        <Association Name="FK__sanpham__loaisan__286302EC">
           <End Role="loaisanpham" Type="Self.loaisanpham" Multiplicity="0..1" />
           <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
           <ReferentialConstraint>
@@ -296,20 +298,20 @@
           <EntitySet Name="donhangs" EntityType="Self.donhang" />
           <EntitySet Name="loaisanphams" EntityType="Self.loaisanpham" />
           <EntitySet Name="sanphams" EntityType="Self.sanpham" />
-          <EntitySet Name="taikhoans" EntityType="Self.taikhoan" />
-          <AssociationSet Name="FK__chitietdo__donha__1BFD2C07" Association="Self.FK__chitietdo__donha__1BFD2C07">
-            <End Role="taikhoan" EntitySet="taikhoans" />
+          <EntitySet Name="taikhoandns" EntityType="Self.taikhoandn" />
+          <AssociationSet Name="FK__chitietdo__donha__300424B4" Association="Self.FK__chitietdo__donha__300424B4">
+            <End Role="donhang" EntitySet="donhangs" />
             <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
           </AssociationSet>
-          <AssociationSet Name="FK__chitietdo__sanph__1B0907CE" Association="Self.FK__chitietdo__sanph__1B0907CE">
+          <AssociationSet Name="FK__chitietdo__sanph__2F10007B" Association="Self.FK__chitietdo__sanph__2F10007B">
             <End Role="sanpham" EntitySet="sanphams" />
             <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
           </AssociationSet>
-          <AssociationSet Name="FK__donhang__taikhoa__182C9B23" Association="Self.FK__donhang__taikhoa__182C9B23">
-            <End Role="taikhoan" EntitySet="taikhoans" />
+          <AssociationSet Name="FK__donhang__taikhoa__2C3393D0" Association="Self.FK__donhang__taikhoa__2C3393D0">
+            <End Role="taikhoandn" EntitySet="taikhoandns" />
             <End Role="donhang" EntitySet="donhangs" />
           </AssociationSet>
-          <AssociationSet Name="FK__sanpham__loaisan__145C0A3F" Association="Self.FK__sanpham__loaisan__145C0A3F">
+          <AssociationSet Name="FK__sanpham__loaisan__286302EC" Association="Self.FK__sanpham__loaisan__286302EC">
             <End Role="loaisanpham" EntitySet="loaisanphams" />
             <End Role="sanpham" EntitySet="sanphams" />
           </AssociationSet>
@@ -329,6 +331,7 @@
           <FunctionImport Name="sp_addsanpham">
             <Parameter Name="tensanpham" Mode="In" Type="String" />
             <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+            <Parameter Name="giatien" Mode="In" Type="Single" />
           </FunctionImport>
           <FunctionImport Name="sp_addtaikhoan">
             <Parameter Name="taikhoan" Mode="In" Type="String" />
@@ -368,6 +371,7 @@
           <FunctionImport Name="sp_editsanpham">
             <Parameter Name="tensanpham" Mode="In" Type="String" />
             <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+            <Parameter Name="giatien" Mode="In" Type="Single" />
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_edittaikhoan">
@@ -381,9 +385,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CanteenManagementModelStoreContainer" CdmEntityContainer="CanteenManagementEntities">
+        <EntityContainerMapping StorageEntityContainer="CanteenManagementDbContextStoreContainer" CdmEntityContainer="CanteenManagementEntities">
           <EntitySetMapping Name="chitietdonhangs">
-            <EntityTypeMapping TypeName="CanteenManagementModel.chitietdonhang">
+            <EntityTypeMapping TypeName="CanteenManagementDbContext.chitietdonhang">
               <MappingFragment StoreEntitySet="chitietdonhang">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="sanphamid" ColumnName="sanphamid" />
@@ -394,7 +398,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="donhangs">
-            <EntityTypeMapping TypeName="CanteenManagementModel.donhang">
+            <EntityTypeMapping TypeName="CanteenManagementDbContext.donhang">
               <MappingFragment StoreEntitySet="donhang">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
@@ -406,7 +410,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="loaisanphams">
-            <EntityTypeMapping TypeName="CanteenManagementModel.loaisanpham">
+            <EntityTypeMapping TypeName="CanteenManagementDbContext.loaisanpham">
               <MappingFragment StoreEntitySet="loaisanpham">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tenloaisanpham" ColumnName="tenloaisanpham" />
@@ -414,7 +418,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sanphams">
-            <EntityTypeMapping TypeName="CanteenManagementModel.sanpham">
+            <EntityTypeMapping TypeName="CanteenManagementDbContext.sanpham">
               <MappingFragment StoreEntitySet="sanpham">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
@@ -423,31 +427,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="taikhoans">
-            <EntityTypeMapping TypeName="CanteenManagementModel.taikhoan">
-              <MappingFragment StoreEntitySet="taikhoan">
+          <EntitySetMapping Name="taikhoandns">
+            <EntityTypeMapping TypeName="CanteenManagementDbContext.taikhoandn">
+              <MappingFragment StoreEntitySet="taikhoandn">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="taikhoan1" ColumnName="taikhoan" />
+                <ScalarProperty Name="taikhoan" ColumnName="taikhoan" />
                 <ScalarProperty Name="matkhau" ColumnName="matkhau" />
                 <ScalarProperty Name="hoten" ColumnName="hoten" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_addchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_addchitietdonhang" />
-          <FunctionImportMapping FunctionImportName="sp_adddonhang" FunctionName="CanteenManagementModel.Store.sp_adddonhang" />
-          <FunctionImportMapping FunctionImportName="sp_addloaisanpham" FunctionName="CanteenManagementModel.Store.sp_addloaisanpham" />
-          <FunctionImportMapping FunctionImportName="sp_addsanpham" FunctionName="CanteenManagementModel.Store.sp_addsanpham" />
-          <FunctionImportMapping FunctionImportName="sp_addtaikhoan" FunctionName="CanteenManagementModel.Store.sp_addtaikhoan" />
-          <FunctionImportMapping FunctionImportName="sp_detelechitietdonhang" FunctionName="CanteenManagementModel.Store.sp_detelechitietdonhang" />
-          <FunctionImportMapping FunctionImportName="sp_deteledonhang" FunctionName="CanteenManagementModel.Store.sp_deteledonhang" />
-          <FunctionImportMapping FunctionImportName="sp_deteleloaisanpham" FunctionName="CanteenManagementModel.Store.sp_deteleloaisanpham" />
-          <FunctionImportMapping FunctionImportName="sp_detelesanpham" FunctionName="CanteenManagementModel.Store.sp_detelesanpham" />
-          <FunctionImportMapping FunctionImportName="sp_deteletaikhoan" FunctionName="CanteenManagementModel.Store.sp_deteletaikhoan" />
-          <FunctionImportMapping FunctionImportName="sp_editchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_editchitietdonhang" />
-          <FunctionImportMapping FunctionImportName="sp_editdonhang" FunctionName="CanteenManagementModel.Store.sp_editdonhang" />
-          <FunctionImportMapping FunctionImportName="sp_editloaisanpham" FunctionName="CanteenManagementModel.Store.sp_editloaisanpham" />
-          <FunctionImportMapping FunctionImportName="sp_editsanpham" FunctionName="CanteenManagementModel.Store.sp_editsanpham" />
-          <FunctionImportMapping FunctionImportName="sp_edittaikhoan" FunctionName="CanteenManagementModel.Store.sp_edittaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_addchitietdonhang" FunctionName="CanteenManagementDbContext.Store.sp_addchitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_adddonhang" FunctionName="CanteenManagementDbContext.Store.sp_adddonhang" />
+          <FunctionImportMapping FunctionImportName="sp_addloaisanpham" FunctionName="CanteenManagementDbContext.Store.sp_addloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_addsanpham" FunctionName="CanteenManagementDbContext.Store.sp_addsanpham" />
+          <FunctionImportMapping FunctionImportName="sp_addtaikhoan" FunctionName="CanteenManagementDbContext.Store.sp_addtaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_detelechitietdonhang" FunctionName="CanteenManagementDbContext.Store.sp_detelechitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_deteledonhang" FunctionName="CanteenManagementDbContext.Store.sp_deteledonhang" />
+          <FunctionImportMapping FunctionImportName="sp_deteleloaisanpham" FunctionName="CanteenManagementDbContext.Store.sp_deteleloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_detelesanpham" FunctionName="CanteenManagementDbContext.Store.sp_detelesanpham" />
+          <FunctionImportMapping FunctionImportName="sp_deteletaikhoan" FunctionName="CanteenManagementDbContext.Store.sp_deteletaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_editchitietdonhang" FunctionName="CanteenManagementDbContext.Store.sp_editchitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_editdonhang" FunctionName="CanteenManagementDbContext.Store.sp_editdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_editloaisanpham" FunctionName="CanteenManagementDbContext.Store.sp_editloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_editsanpham" FunctionName="CanteenManagementDbContext.Store.sp_editsanpham" />
+          <FunctionImportMapping FunctionImportName="sp_edittaikhoan" FunctionName="CanteenManagementDbContext.Store.sp_edittaikhoan" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

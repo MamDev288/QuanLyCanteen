@@ -14,6 +14,12 @@ namespace CanteenManagement.Models
     
     public partial class donhang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public donhang()
+        {
+            this.chitietdonhangs = new HashSet<chitietdonhang>();
+        }
+    
         public int id { get; set; }
         public string tenkhachhang { get; set; }
         public Nullable<float> tongtien { get; set; }
@@ -21,6 +27,8 @@ namespace CanteenManagement.Models
         public Nullable<float> thanhtoan { get; set; }
         public Nullable<int> taikhoanid { get; set; }
     
-        public virtual taikhoan taikhoan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<chitietdonhang> chitietdonhangs { get; set; }
+        public virtual taikhoandn taikhoandn { get; set; }
     }
 }

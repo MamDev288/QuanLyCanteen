@@ -61,11 +61,35 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormsControl\DonHangDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsControl\DonHangDetailForm.Designer.cs">
+      <DependentUpon>DonHangDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsControl\DonHangForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsControl\DonHangForm.Designer.cs">
+      <DependentUpon>DonHangForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsControl\LoaiSanPhamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsControl\LoaiSanPhamForm.Designer.cs">
+      <DependentUpon>LoaiSanPhamForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormsControl\Menu.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormsControl\Menu.Designer.cs">
       <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormsControl\SanPhamForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormsControl\SanPhamForm.Designer.cs">
+      <DependentUpon>SanPhamForm.cs</DependentUpon>
     </Compile>
     <Compile Include="FormsControl\TaiKhoanForm.cs">
       <SubType>Form</SubType>
@@ -73,35 +97,35 @@
     <Compile Include="FormsControl\TaiKhoanForm.Designer.cs">
       <DependentUpon>TaiKhoanForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CanteenManagementDbContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanteenManagementDbContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CanteenManagementDbContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CanteenManagementDbContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CanteenManagementDbContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\chitietdonhang.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\donhang.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\loaisanpham.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sanpham.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\taikhoan.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
+    <Compile Include="Models\taikhoandn.cs">
+      <DependentUpon>CanteenManagementDbContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -109,8 +133,20 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormsControl\DonHangDetailForm.resx">
+      <DependentUpon>DonHangDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsControl\DonHangForm.resx">
+      <DependentUpon>DonHangForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsControl\LoaiSanPhamForm.resx">
+      <DependentUpon>LoaiSanPhamForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormsControl\Menu.resx">
       <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormsControl\SanPhamForm.resx">
+      <DependentUpon>SanPhamForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormsControl\TaiKhoanForm.resx">
       <DependentUpon>TaiKhoanForm.cs</DependentUpon>
@@ -124,12 +160,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Models\Model1.edmx">
+    <EntityDeploy Include="Models\CanteenManagementDbContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>CanteenManagementDbContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <None Include="Models\CanteenManagementDbContext.edmx.diagram">
+      <DependentUpon>CanteenManagementDbContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -146,20 +182,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Models\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Models\CanteenManagementDbContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CanteenManagementDbContext.edmx</DependentUpon>
+      <LastGenOutput>CanteenManagementDbContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CanteenManagementDbContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CanteenManagementDbContext.edmx</DependentUpon>
+      <LastGenOutput>CanteenManagementDbContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,7 +20,7 @@ namespace CanteenManagement.Models
         public float thanhtien { get; set; }
         public Nullable<int> donhangid { get; set; }
     
-        public virtual taikhoan taikhoan { get; set; }
+        public virtual donhang donhang { get; set; }
         public virtual sanpham sanpham { get; set; }
     }
 }

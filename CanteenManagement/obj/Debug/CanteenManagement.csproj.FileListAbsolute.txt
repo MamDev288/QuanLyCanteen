@@ -16,3 +16,25 @@ D:\C# Source\Winform\CanteenManagement\CanteenManagement\obj\Debug\CanteenManage
 D:\C# Source\Winform\CanteenManagement\CanteenManagement\obj\Debug\CanteenManagement.csproj.CopyComplete
 D:\C# Source\Winform\CanteenManagement\CanteenManagement\obj\Debug\CanteenManagement.exe
 D:\C# Source\Winform\CanteenManagement\CanteenManagement\obj\Debug\CanteenManagement.pdb
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.csproj.AssemblyReference.cache
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.csproj.SuggestedBindingRedirects.cache
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.frmlogin.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.Menufrm.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.TaiKhoanForm.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.Properties.Resources.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.csproj.GenerateResource.cache
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.exe
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.pdb
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\CanteenManagement.exe.config
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\CanteenManagement.exe
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\CanteenManagement.pdb
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\EntityFramework.dll
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\EntityFramework.xml
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.csproj.CopyComplete
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.LoaiSanPhamForm.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.SanPhamForm.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.DonHangForm.resources
+C:\Users\Admin\Source\Repos\MamDev288\QuanLyCanteen\CanteenManagement\obj\Debug\CanteenManagement.FormsControl.DonHangDetailForm.resources

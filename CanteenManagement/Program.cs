@@ -9,7 +9,7 @@ namespace CanteenManagement
 {
     internal static class Program
     {
-        public static taikhoan tk;
+        public static taikhoandn tk;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

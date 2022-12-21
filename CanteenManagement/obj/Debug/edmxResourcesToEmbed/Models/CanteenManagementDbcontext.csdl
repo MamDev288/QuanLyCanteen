@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CanteenManagementDbContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="chitietdonhang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sanphamid" Type="Int32" />
+    <Property Name="soluong" Type="Single" Nullable="false" />
+    <Property Name="thanhtien" Type="Single" Nullable="false" />
+    <Property Name="donhangid" Type="Int32" />
+    <NavigationProperty Name="donhang" Relationship="Self.FK__chitietdo__donha__300424B4" FromRole="chitietdonhang" ToRole="donhang" />
+    <NavigationProperty Name="sanpham" Relationship="Self.FK__chitietdo__sanph__2F10007B" FromRole="chitietdonhang" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="donhang">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenkhachhang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tongtien" Type="Single" />
+    <Property Name="giamgia" Type="Single" />
+    <Property Name="thanhtoan" Type="Single" />
+    <Property Name="taikhoanid" Type="Int32" />
+    <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__donha__300424B4" FromRole="donhang" ToRole="chitietdonhang" />
+    <NavigationProperty Name="taikhoandn" Relationship="Self.FK__donhang__taikhoa__2C3393D0" FromRole="donhang" ToRole="taikhoandn" />
+  </EntityType>
+  <EntityType Name="loaisanpham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenloaisanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__loaisan__286302EC" FromRole="loaisanpham" ToRole="sanpham" />
+  </EntityType>
+  <EntityType Name="sanpham">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tensanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="giatien" Type="Single" Nullable="false" />
+    <Property Name="loaisanphamid" Type="Int32" />
+    <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__sanph__2F10007B" FromRole="sanpham" ToRole="chitietdonhang" />
+    <NavigationProperty Name="loaisanpham" Relationship="Self.FK__sanpham__loaisan__286302EC" FromRole="sanpham" ToRole="loaisanpham" />
+  </EntityType>
+  <EntityType Name="taikhoandn">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="taikhoan" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="matkhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="hoten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="donhangs" Relationship="Self.FK__donhang__taikhoa__2C3393D0" FromRole="taikhoandn" ToRole="donhang" />
+  </EntityType>
+  <Association Name="FK__chitietdo__donha__300424B4">
+    <End Role="donhang" Type="Self.donhang" Multiplicity="0..1" />
+    <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="donhang">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="chitietdonhang">
+        <PropertyRef Name="donhangid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chitietdo__sanph__2F10007B">
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+    <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="sanpham">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="chitietdonhang">
+        <PropertyRef Name="sanphamid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__donhang__taikhoa__2C3393D0">
+    <End Role="taikhoandn" Type="Self.taikhoandn" Multiplicity="0..1" />
+    <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="taikhoandn">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="donhang">
+        <PropertyRef Name="taikhoanid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__sanpham__loaisan__286302EC">
+    <End Role="loaisanpham" Type="Self.loaisanpham" Multiplicity="0..1" />
+    <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="loaisanpham">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="sanpham">
+        <PropertyRef Name="loaisanphamid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CanteenManagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="chitietdonhangs" EntityType="Self.chitietdonhang" />
+    <EntitySet Name="donhangs" EntityType="Self.donhang" />
+    <EntitySet Name="loaisanphams" EntityType="Self.loaisanpham" />
+    <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+    <EntitySet Name="taikhoandns" EntityType="Self.taikhoandn" />
+    <AssociationSet Name="FK__chitietdo__donha__300424B4" Association="Self.FK__chitietdo__donha__300424B4">
+      <End Role="donhang" EntitySet="donhangs" />
+      <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chitietdo__sanph__2F10007B" Association="Self.FK__chitietdo__sanph__2F10007B">
+      <End Role="sanpham" EntitySet="sanphams" />
+      <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__donhang__taikhoa__2C3393D0" Association="Self.FK__donhang__taikhoa__2C3393D0">
+      <End Role="taikhoandn" EntitySet="taikhoandns" />
+      <End Role="donhang" EntitySet="donhangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__sanpham__loaisan__286302EC" Association="Self.FK__sanpham__loaisan__286302EC">
+      <End Role="loaisanpham" EntitySet="loaisanphams" />
+      <End Role="sanpham" EntitySet="sanphams" />
+    </AssociationSet>
+    <FunctionImport Name="sp_addchitietdonhang">
+      <Parameter Name="id_sanpham" Mode="In" Type="Int32" />
+      <Parameter Name="soluong" Mode="In" Type="Single" />
+      <Parameter Name="donhang_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_adddonhang" ReturnType="Collection(Decimal)">
+      <Parameter Name="tenkhachhang" Mode="In" Type="String" />
+      <Parameter Name="giamgia" Mode="In" Type="Single" />
+      <Parameter Name="taikhoan" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_addloaisanpham">
+      <Parameter Name="tenloai" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_addsanpham">
+      <Parameter Name="tensanpham" Mode="In" Type="String" />
+      <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+      <Parameter Name="giatien" Mode="In" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="sp_addtaikhoan">
+      <Parameter Name="taikhoan" Mode="In" Type="String" />
+      <Parameter Name="matkhau" Mode="In" Type="String" />
+      <Parameter Name="hoTen" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_detelechitietdonhang">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deteledonhang">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deteleloaisanpham">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_detelesanpham">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_deteletaikhoan">
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editchitietdonhang">
+      <Parameter Name="id_sanpham" Mode="In" Type="Int32" />
+      <Parameter Name="soluong" Mode="In" Type="Single" />
+      <Parameter Name="donhang_id" Mode="In" Type="Int32" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editdonhang">
+      <Parameter Name="tenkhachhang" Mode="In" Type="String" />
+      <Parameter Name="giamgia" Mode="In" Type="Single" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editloaisanpham">
+      <Parameter Name="tenloai" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_editsanpham">
+      <Parameter Name="tensanpham" Mode="In" Type="String" />
+      <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+      <Parameter Name="giatien" Mode="In" Type="Single" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_edittaikhoan">
+      <Parameter Name="matkhau" Mode="In" Type="String" />
+      <Parameter Name="hoTen" Mode="In" Type="String" />
+      <Parameter Name="id" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

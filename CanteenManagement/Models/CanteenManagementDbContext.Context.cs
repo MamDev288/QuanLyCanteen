@@ -31,7 +31,7 @@ namespace CanteenManagement.Models
         public virtual DbSet<donhang> donhangs { get; set; }
         public virtual DbSet<loaisanpham> loaisanphams { get; set; }
         public virtual DbSet<sanpham> sanphams { get; set; }
-        public virtual DbSet<taikhoan> taikhoans { get; set; }
+        public virtual DbSet<taikhoandn> taikhoandns { get; set; }
     
         public virtual int sp_addchitietdonhang(Nullable<int> id_sanpham, Nullable<float> soluong, Nullable<int> donhang_id)
         {
@@ -76,7 +76,7 @@ namespace CanteenManagement.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addloaisanpham", tenloaiParameter);
         }
     
-        public virtual int sp_addsanpham(string tensanpham, Nullable<int> loaiSP)
+        public virtual int sp_addsanpham(string tensanpham, Nullable<int> loaiSP, Nullable<float> giatien)
         {
             var tensanphamParameter = tensanpham != null ?
                 new ObjectParameter("tensanpham", tensanpham) :
@@ -86,7 +86,11 @@ namespace CanteenManagement.Models
                 new ObjectParameter("loaiSP", loaiSP) :
                 new ObjectParameter("loaiSP", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addsanpham", tensanphamParameter, loaiSPParameter);
+            var giatienParameter = giatien.HasValue ?
+                new ObjectParameter("giatien", giatien) :
+                new ObjectParameter("giatien", typeof(float));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_addsanpham", tensanphamParameter, loaiSPParameter, giatienParameter);
         }
     
         public virtual int sp_addtaikhoan(string taikhoan, string matkhau, string hoTen)
@@ -202,7 +206,7 @@ namespace CanteenManagement.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editloaisanpham", tenloaiParameter, idParameter);
         }
     
-        public virtual int sp_editsanpham(string tensanpham, Nullable<int> loaiSP, Nullable<int> id)
+        public virtual int sp_editsanpham(string tensanpham, Nullable<int> loaiSP, Nullable<float> giatien, Nullable<int> id)
         {
             var tensanphamParameter = tensanpham != null ?
                 new ObjectParameter("tensanpham", tensanpham) :
@@ -212,11 +216,15 @@ namespace CanteenManagement.Models
                 new ObjectParameter("loaiSP", loaiSP) :
                 new ObjectParameter("loaiSP", typeof(int));
     
+            var giatienParameter = giatien.HasValue ?
+                new ObjectParameter("giatien", giatien) :
+                new ObjectParameter("giatien", typeof(float));
+    
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editsanpham", tensanphamParameter, loaiSPParameter, idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_editsanpham", tensanphamParameter, loaiSPParameter, giatienParameter, idParameter);
         }
     
         public virtual int sp_edittaikhoan(string matkhau, string hoTen, Nullable<int> id)
