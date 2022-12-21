@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CanteenManagementModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="chitietdonhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sanphamid" Type="int" />
+          <Property Name="soluong" Type="real" Nullable="false" />
+          <Property Name="thanhtien" Type="real" Nullable="false" />
+          <Property Name="donhangid" Type="int" />
+        </EntityType>
+        <EntityType Name="donhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenkhachhang" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="tongtien" Type="real" />
+          <Property Name="giamgia" Type="real" />
+          <Property Name="thanhtoan" Type="real" />
+          <Property Name="taikhoanid" Type="int" />
+        </EntityType>
+        <EntityType Name="loaisanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tenloaisanpham" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tensanpham" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="giatien" Type="real" Nullable="false" />
+          <Property Name="loaisanphamid" Type="int" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="taikhoan" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="matkhau" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="hoten" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__chitietdo__donha__1BFD2C07">
+          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taikhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="donhangid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdo__sanph__1B0907CE">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="sanphamid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__donhang__taikhoa__182C9B23">
+          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+          <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taikhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donhang">
+              <PropertyRef Name="taikhoanid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sanpham__loaisan__145C0A3F">
+          <End Role="loaisanpham" Type="Self.loaisanpham" Multiplicity="0..1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loaisanpham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="loaisanphamid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_addchitietdonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_sanpham" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="real" Mode="In" />
+          <Parameter Name="donhang_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_adddonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenkhachhang" Type="nvarchar" Mode="In" />
+          <Parameter Name="giamgia" Type="real" Mode="In" />
+          <Parameter Name="taikhoan" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_addloaisanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenloai" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_addsanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tensanpham" Type="nvarchar" Mode="In" />
+          <Parameter Name="loaiSP" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_addtaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="taikhoan" Type="varchar" Mode="In" />
+          <Parameter Name="matkhau" Type="nvarchar" Mode="In" />
+          <Parameter Name="hoTen" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_detelechitietdonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deteledonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deteleloaisanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_detelesanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_deteletaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_editchitietdonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_sanpham" Type="int" Mode="In" />
+          <Parameter Name="soluong" Type="real" Mode="In" />
+          <Parameter Name="donhang_id" Type="int" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_editdonhang" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenkhachhang" Type="nvarchar" Mode="In" />
+          <Parameter Name="giamgia" Type="real" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_editloaisanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tenloai" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_editsanpham" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tensanpham" Type="nvarchar" Mode="In" />
+          <Parameter Name="loaiSP" Type="int" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_edittaikhoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="matkhau" Type="nvarchar" Mode="In" />
+          <Parameter Name="hoTen" Type="nvarchar" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="CanteenManagementModelStoreContainer">
+          <EntitySet Name="chitietdonhang" EntityType="Self.chitietdonhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donhang" EntityType="Self.donhang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="loaisanpham" EntityType="Self.loaisanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sanpham" EntityType="Self.sanpham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="taikhoan" EntityType="Self.taikhoan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__chitietdo__donha__1BFD2C07" Association="Self.FK__chitietdo__donha__1BFD2C07">
+            <End Role="taikhoan" EntitySet="taikhoan" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdo__sanph__1B0907CE" Association="Self.FK__chitietdo__sanph__1B0907CE">
+            <End Role="sanpham" EntitySet="sanpham" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__donhang__taikhoa__182C9B23" Association="Self.FK__donhang__taikhoa__182C9B23">
+            <End Role="taikhoan" EntitySet="taikhoan" />
+            <End Role="donhang" EntitySet="donhang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sanpham__loaisan__145C0A3F" Association="Self.FK__sanpham__loaisan__145C0A3F">
+            <End Role="loaisanpham" EntitySet="loaisanpham" />
+            <End Role="sanpham" EntitySet="sanpham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CanteenManagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="chitietdonhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sanphamid" Type="Int32" />
+          <Property Name="soluong" Type="Single" Nullable="false" />
+          <Property Name="thanhtien" Type="Single" Nullable="false" />
+          <Property Name="donhangid" Type="Int32" />
+          <NavigationProperty Name="taikhoan" Relationship="Self.FK__chitietdo__donha__1BFD2C07" FromRole="chitietdonhang" ToRole="taikhoan" />
+          <NavigationProperty Name="sanpham" Relationship="Self.FK__chitietdo__sanph__1B0907CE" FromRole="chitietdonhang" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="donhang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenkhachhang" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tongtien" Type="Single" />
+          <Property Name="giamgia" Type="Single" />
+          <Property Name="thanhtoan" Type="Single" />
+          <Property Name="taikhoanid" Type="Int32" />
+          <NavigationProperty Name="taikhoan" Relationship="Self.FK__donhang__taikhoa__182C9B23" FromRole="donhang" ToRole="taikhoan" />
+        </EntityType>
+        <EntityType Name="loaisanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tenloaisanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="sanphams" Relationship="Self.FK__sanpham__loaisan__145C0A3F" FromRole="loaisanpham" ToRole="sanpham" />
+        </EntityType>
+        <EntityType Name="sanpham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tensanpham" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="giatien" Type="Single" Nullable="false" />
+          <Property Name="loaisanphamid" Type="Int32" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__sanph__1B0907CE" FromRole="sanpham" ToRole="chitietdonhang" />
+          <NavigationProperty Name="loaisanpham" Relationship="Self.FK__sanpham__loaisan__145C0A3F" FromRole="sanpham" ToRole="loaisanpham" />
+        </EntityType>
+        <EntityType Name="taikhoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="taikhoan1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matkhau" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hoten" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="chitietdonhangs" Relationship="Self.FK__chitietdo__donha__1BFD2C07" FromRole="taikhoan" ToRole="chitietdonhang" />
+          <NavigationProperty Name="donhangs" Relationship="Self.FK__donhang__taikhoa__182C9B23" FromRole="taikhoan" ToRole="donhang" />
+        </EntityType>
+        <Association Name="FK__chitietdo__donha__1BFD2C07">
+          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taikhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="donhangid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__chitietdo__sanph__1B0907CE">
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="0..1" />
+          <End Role="chitietdonhang" Type="Self.chitietdonhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sanpham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="chitietdonhang">
+              <PropertyRef Name="sanphamid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__donhang__taikhoa__182C9B23">
+          <End Role="taikhoan" Type="Self.taikhoan" Multiplicity="0..1" />
+          <End Role="donhang" Type="Self.donhang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="taikhoan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="donhang">
+              <PropertyRef Name="taikhoanid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__sanpham__loaisan__145C0A3F">
+          <End Role="loaisanpham" Type="Self.loaisanpham" Multiplicity="0..1" />
+          <End Role="sanpham" Type="Self.sanpham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="loaisanpham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sanpham">
+              <PropertyRef Name="loaisanphamid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CanteenManagementEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="chitietdonhangs" EntityType="Self.chitietdonhang" />
+          <EntitySet Name="donhangs" EntityType="Self.donhang" />
+          <EntitySet Name="loaisanphams" EntityType="Self.loaisanpham" />
+          <EntitySet Name="sanphams" EntityType="Self.sanpham" />
+          <EntitySet Name="taikhoans" EntityType="Self.taikhoan" />
+          <AssociationSet Name="FK__chitietdo__donha__1BFD2C07" Association="Self.FK__chitietdo__donha__1BFD2C07">
+            <End Role="taikhoan" EntitySet="taikhoans" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__chitietdo__sanph__1B0907CE" Association="Self.FK__chitietdo__sanph__1B0907CE">
+            <End Role="sanpham" EntitySet="sanphams" />
+            <End Role="chitietdonhang" EntitySet="chitietdonhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__donhang__taikhoa__182C9B23" Association="Self.FK__donhang__taikhoa__182C9B23">
+            <End Role="taikhoan" EntitySet="taikhoans" />
+            <End Role="donhang" EntitySet="donhangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__sanpham__loaisan__145C0A3F" Association="Self.FK__sanpham__loaisan__145C0A3F">
+            <End Role="loaisanpham" EntitySet="loaisanphams" />
+            <End Role="sanpham" EntitySet="sanphams" />
+          </AssociationSet>
+          <FunctionImport Name="sp_addchitietdonhang">
+            <Parameter Name="id_sanpham" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Single" />
+            <Parameter Name="donhang_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_adddonhang" ReturnType="Collection(Decimal)">
+            <Parameter Name="tenkhachhang" Mode="In" Type="String" />
+            <Parameter Name="giamgia" Mode="In" Type="Single" />
+            <Parameter Name="taikhoan" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_addloaisanpham">
+            <Parameter Name="tenloai" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_addsanpham">
+            <Parameter Name="tensanpham" Mode="In" Type="String" />
+            <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_addtaikhoan">
+            <Parameter Name="taikhoan" Mode="In" Type="String" />
+            <Parameter Name="matkhau" Mode="In" Type="String" />
+            <Parameter Name="hoTen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_detelechitietdonhang">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deteledonhang">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deteleloaisanpham">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_detelesanpham">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_deteletaikhoan">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editchitietdonhang">
+            <Parameter Name="id_sanpham" Mode="In" Type="Int32" />
+            <Parameter Name="soluong" Mode="In" Type="Single" />
+            <Parameter Name="donhang_id" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editdonhang">
+            <Parameter Name="tenkhachhang" Mode="In" Type="String" />
+            <Parameter Name="giamgia" Mode="In" Type="Single" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editloaisanpham">
+            <Parameter Name="tenloai" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_editsanpham">
+            <Parameter Name="tensanpham" Mode="In" Type="String" />
+            <Parameter Name="loaiSP" Mode="In" Type="Int32" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_edittaikhoan">
+            <Parameter Name="matkhau" Mode="In" Type="String" />
+            <Parameter Name="hoTen" Mode="In" Type="String" />
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CanteenManagementModelStoreContainer" CdmEntityContainer="CanteenManagementEntities">
+          <EntitySetMapping Name="chitietdonhangs">
+            <EntityTypeMapping TypeName="CanteenManagementModel.chitietdonhang">
+              <MappingFragment StoreEntitySet="chitietdonhang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="sanphamid" ColumnName="sanphamid" />
+                <ScalarProperty Name="soluong" ColumnName="soluong" />
+                <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+                <ScalarProperty Name="donhangid" ColumnName="donhangid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donhangs">
+            <EntityTypeMapping TypeName="CanteenManagementModel.donhang">
+              <MappingFragment StoreEntitySet="donhang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
+                <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+                <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+                <ScalarProperty Name="thanhtoan" ColumnName="thanhtoan" />
+                <ScalarProperty Name="taikhoanid" ColumnName="taikhoanid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="loaisanphams">
+            <EntityTypeMapping TypeName="CanteenManagementModel.loaisanpham">
+              <MappingFragment StoreEntitySet="loaisanpham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tenloaisanpham" ColumnName="tenloaisanpham" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sanphams">
+            <EntityTypeMapping TypeName="CanteenManagementModel.sanpham">
+              <MappingFragment StoreEntitySet="sanpham">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+                <ScalarProperty Name="giatien" ColumnName="giatien" />
+                <ScalarProperty Name="loaisanphamid" ColumnName="loaisanphamid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="taikhoans">
+            <EntityTypeMapping TypeName="CanteenManagementModel.taikhoan">
+              <MappingFragment StoreEntitySet="taikhoan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="taikhoan1" ColumnName="taikhoan" />
+                <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+                <ScalarProperty Name="hoten" ColumnName="hoten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_addchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_addchitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_adddonhang" FunctionName="CanteenManagementModel.Store.sp_adddonhang" />
+          <FunctionImportMapping FunctionImportName="sp_addloaisanpham" FunctionName="CanteenManagementModel.Store.sp_addloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_addsanpham" FunctionName="CanteenManagementModel.Store.sp_addsanpham" />
+          <FunctionImportMapping FunctionImportName="sp_addtaikhoan" FunctionName="CanteenManagementModel.Store.sp_addtaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_detelechitietdonhang" FunctionName="CanteenManagementModel.Store.sp_detelechitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_deteledonhang" FunctionName="CanteenManagementModel.Store.sp_deteledonhang" />
+          <FunctionImportMapping FunctionImportName="sp_deteleloaisanpham" FunctionName="CanteenManagementModel.Store.sp_deteleloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_detelesanpham" FunctionName="CanteenManagementModel.Store.sp_detelesanpham" />
+          <FunctionImportMapping FunctionImportName="sp_deteletaikhoan" FunctionName="CanteenManagementModel.Store.sp_deteletaikhoan" />
+          <FunctionImportMapping FunctionImportName="sp_editchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_editchitietdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_editdonhang" FunctionName="CanteenManagementModel.Store.sp_editdonhang" />
+          <FunctionImportMapping FunctionImportName="sp_editloaisanpham" FunctionName="CanteenManagementModel.Store.sp_editloaisanpham" />
+          <FunctionImportMapping FunctionImportName="sp_editsanpham" FunctionName="CanteenManagementModel.Store.sp_editsanpham" />
+          <FunctionImportMapping FunctionImportName="sp_edittaikhoan" FunctionName="CanteenManagementModel.Store.sp_edittaikhoan" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

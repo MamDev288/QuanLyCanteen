@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba189ea99a944815958ffb2d8cbbe1ed" Name="Diagram1">
+        <EntityTypeShape EntityType="CanteenManagementModel.chitietdonhang" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CanteenManagementModel.donhang" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CanteenManagementModel.loaisanpham" Width="1.5" PointX="1.5" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CanteenManagementModel.sanpham" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CanteenManagementModel.taikhoan" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="CanteenManagementModel.FK__chitietdo__donha__1BFD2C07" ManuallyRouted="false" />
+        <AssociationConnector Association="CanteenManagementModel.FK__chitietdo__sanph__1B0907CE" ManuallyRouted="false" />
+        <AssociationConnector Association="CanteenManagementModel.FK__donhang__taikhoa__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="CanteenManagementModel.FK__sanpham__loaisan__145C0A3F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CanteenManagementModelStoreContainer" CdmEntityContainer="CanteenManagementEntities">
+    <EntitySetMapping Name="chitietdonhangs">
+      <EntityTypeMapping TypeName="CanteenManagementModel.chitietdonhang">
+        <MappingFragment StoreEntitySet="chitietdonhang">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="sanphamid" ColumnName="sanphamid" />
+          <ScalarProperty Name="soluong" ColumnName="soluong" />
+          <ScalarProperty Name="thanhtien" ColumnName="thanhtien" />
+          <ScalarProperty Name="donhangid" ColumnName="donhangid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="donhangs">
+      <EntityTypeMapping TypeName="CanteenManagementModel.donhang">
+        <MappingFragment StoreEntitySet="donhang">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tenkhachhang" ColumnName="tenkhachhang" />
+          <ScalarProperty Name="tongtien" ColumnName="tongtien" />
+          <ScalarProperty Name="giamgia" ColumnName="giamgia" />
+          <ScalarProperty Name="thanhtoan" ColumnName="thanhtoan" />
+          <ScalarProperty Name="taikhoanid" ColumnName="taikhoanid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="loaisanphams">
+      <EntityTypeMapping TypeName="CanteenManagementModel.loaisanpham">
+        <MappingFragment StoreEntitySet="loaisanpham">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tenloaisanpham" ColumnName="tenloaisanpham" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sanphams">
+      <EntityTypeMapping TypeName="CanteenManagementModel.sanpham">
+        <MappingFragment StoreEntitySet="sanpham">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="tensanpham" ColumnName="tensanpham" />
+          <ScalarProperty Name="giatien" ColumnName="giatien" />
+          <ScalarProperty Name="loaisanphamid" ColumnName="loaisanphamid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="taikhoans">
+      <EntityTypeMapping TypeName="CanteenManagementModel.taikhoan">
+        <MappingFragment StoreEntitySet="taikhoan">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="taikhoan1" ColumnName="taikhoan" />
+          <ScalarProperty Name="matkhau" ColumnName="matkhau" />
+          <ScalarProperty Name="hoten" ColumnName="hoten" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_addchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_addchitietdonhang" />
+    <FunctionImportMapping FunctionImportName="sp_adddonhang" FunctionName="CanteenManagementModel.Store.sp_adddonhang" />
+    <FunctionImportMapping FunctionImportName="sp_addloaisanpham" FunctionName="CanteenManagementModel.Store.sp_addloaisanpham" />
+    <FunctionImportMapping FunctionImportName="sp_addsanpham" FunctionName="CanteenManagementModel.Store.sp_addsanpham" />
+    <FunctionImportMapping FunctionImportName="sp_addtaikhoan" FunctionName="CanteenManagementModel.Store.sp_addtaikhoan" />
+    <FunctionImportMapping FunctionImportName="sp_detelechitietdonhang" FunctionName="CanteenManagementModel.Store.sp_detelechitietdonhang" />
+    <FunctionImportMapping FunctionImportName="sp_deteledonhang" FunctionName="CanteenManagementModel.Store.sp_deteledonhang" />
+    <FunctionImportMapping FunctionImportName="sp_deteleloaisanpham" FunctionName="CanteenManagementModel.Store.sp_deteleloaisanpham" />
+    <FunctionImportMapping FunctionImportName="sp_detelesanpham" FunctionName="CanteenManagementModel.Store.sp_detelesanpham" />
+    <FunctionImportMapping FunctionImportName="sp_deteletaikhoan" FunctionName="CanteenManagementModel.Store.sp_deteletaikhoan" />
+    <FunctionImportMapping FunctionImportName="sp_editchitietdonhang" FunctionName="CanteenManagementModel.Store.sp_editchitietdonhang" />
+    <FunctionImportMapping FunctionImportName="sp_editdonhang" FunctionName="CanteenManagementModel.Store.sp_editdonhang" />
+    <FunctionImportMapping FunctionImportName="sp_editloaisanpham" FunctionName="CanteenManagementModel.Store.sp_editloaisanpham" />
+    <FunctionImportMapping FunctionImportName="sp_editsanpham" FunctionName="CanteenManagementModel.Store.sp_editsanpham" />
+    <FunctionImportMapping FunctionImportName="sp_edittaikhoan" FunctionName="CanteenManagementModel.Store.sp_edittaikhoan" />
+  </EntityContainerMapping>
+</Mapping>
